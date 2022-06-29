@@ -12,36 +12,26 @@ namespace File_Handling
 {
     public partial class Form2 : Form
     {
-        FileInfo[] files;
+        //FileInfo[] files;
         public string path;
         public string Path
         {
             get { return path; }
             set { path = value; }
         }
+        //Using constructor items are added from form1 listbox1 to form2 listbox1
         public Form2(ListBox.ObjectCollection items)
         {
-            InitializeComponent();
-            
+            InitializeComponent(); 
             listBox1.Items.AddRange(items);
-            //string paths = path;
-            //files = new DirectoryInfo(paths).GetFiles("*.txt", SearchOption.TopDirectoryOnly); //no need to define any parameters
-            //for (int i = 0; i < files.Length; i++)
-            //    listBox1.Items.Add(paths.(files[i].FullName));
-
         }
 
-        
-        
         public List<TreeNode> Node1;
         public List<TreeNode> CheckNodes1
         {
             get { return Node1; }   
             set { Node1 = value; }
         }
-
-        
-
         public List<string> item1;
         public List<string>checkListItems
         { get { return item1; }

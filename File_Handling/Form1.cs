@@ -17,12 +17,12 @@ namespace File_Handling
         {
             InitializeComponent();
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        //TextBOX -> textBox1(Name of textbox)
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
-
             ListDirectory(treeView1, textBox1.Text);
         }
+
         private void ListDirectory(TreeView treeView, string path)
         {
             treeView.Nodes.Clear();
@@ -41,12 +41,12 @@ namespace File_Handling
 
         List<TreeNode> checkedNodes = new List<TreeNode>();
         //List<ListBox> listBoxes = new List<ListBox>();  
-        List<string> selectedFilesContent = new List<string>();
-        //ADD-Button
+        //List<string> selectedFilesContent = new List<string>();
+
+        //TreeView -> treeView1(Name) used to show the folder and to add the checked treeview into listBox 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             givecheckedNodes(treeView1.Nodes);
-            GetTextFromSelectedFiles();
             listBox1.Items.Clear();
             foreach (TreeNode node in checkedNodes)
             {
@@ -54,19 +54,19 @@ namespace File_Handling
                 listBox1.Items.Add(file);
             }
         }
-        void GetTextFromSelectedFiles()
-        {
+        //void GetTextFromSelectedFiles()
+        //{
            
-            for (int i = 0; i < listBox1.SelectedItems.Count; i++)
-            {
-                selectedFilesContent.Add(ReadFileContent(listBox1.SelectedItems.ToString()));
-            }
-            //when the loop is done, the list<T> holds all the text from selected files!
-        }
-        private string ReadFileContent(string path)
-        {
-            return File.ReadAllText(path);
-        }
+        //    for (int i = 0; i < listBox1.SelectedItems.Count; i++)
+        //    {
+        //        selectedFilesContent.Add(ReadFileContent(listBox1.SelectedItems.ToString()));
+        //    }
+        //    //when the loop is done, the list<T> holds all the text from selected files!
+        //}
+        //private string ReadFileContent(string path)
+        //{
+        //    return File.ReadAllText(path);
+        //}
         void givecheckedNodes(TreeNodeCollection nodes)
         {
             foreach (TreeNode node in nodes)
@@ -113,19 +113,18 @@ namespace File_Handling
             MessageBox.Show(fileContent, "File Content at path: " + filePath, MessageBoxButtons.OKCancel);
         }
 
-
-private void button3_Click(object sender, EventArgs e)
+        //Btn (search files)-> used to send the items of listbox1 into form2 listbox1.
+        //And to show the dialog box.
+        private void button3_Click(object sender, EventArgs e)
         {
-            //this.Hide();
-            Form2 f2 = new Form2( listBox1.Items);
-            f2.CheckNodes1 = checkedNodes;
-            f2.path= textBox1.Text;
-            f2.checkListItems = selectedFilesContent;
-           // f2.ShowDialog();
-           
-            f2.Show();
+                //this.Hide();
+                Form2 f2 = new Form2( listBox1.Items);
+                f2.CheckNodes1 = checkedNodes;
+                f2.path= textBox1.Text;
+                f2.Show();             
         }
 
+        //CheckedListBox -> checkedListBox1(name) used to check the type of file and get highlighted in Listbox1.
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -156,7 +155,7 @@ private void button3_Click(object sender, EventArgs e)
             //    listView2.Items[item.Index].Selected = true;
             //}
         }
-        //check
+        //check button
         private void button4_Click(object sender, EventArgs e)
         {
 
@@ -169,13 +168,6 @@ private void button3_Click(object sender, EventArgs e)
                 }
             }
             //listBox1.ClearSelected();
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            ListDirectory(treeView1, textBox1.Text);
-        }
-
-       
+        }  
     }
 }
