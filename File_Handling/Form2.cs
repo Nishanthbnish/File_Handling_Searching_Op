@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Text.RegularExpressions;
+
 namespace File_Handling
 {
     public partial class Form2 : Form
@@ -58,24 +60,58 @@ namespace File_Handling
                 }
             }
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             int index = 0;
             string temp = richTextBox1.Text;
             richTextBox1.Text="";
             richTextBox1.Text = temp;
-            while(index<richTextBox1.Text.LastIndexOf(textBox1.Text))
-            {
-                //searches the text in a RichtextBox control for a string within a range of text within the 
-                richTextBox1.Find(textBox1.Text, index, richTextBox1.TextLength, RichTextBoxFinds.None);
-                //selection color.This is added automatically when it's selected
-                richTextBox1.SelectionBackColor = Color.Yellow;
-                //After a match is found the index is increased so the search won't stop at the same
-                index = richTextBox1.Text.IndexOf(textBox1.Text, index) + 1;
-            }
+           
             this.timer1.Start();
+            string strtemp = textBox1.Text.Replace(Environment.NewLine, "~");
+            string[] names = strtemp.Split(' ');
+            //richTextBox1.Clear();   
+            foreach (string name in names)
+            {
+                //richTextBox1.Text = name;
+                while (index < richTextBox1.Text.LastIndexOf(name))
+                {
+                    //searches the text in a RichtextBox control for a string within a range of text  
+                    richTextBox1.Find(name, index, richTextBox1.TextLength, RichTextBoxFinds.None);
+                    //selection color.This is added automatically when it's selected
+                    richTextBox1.SelectionBackColor = Color.Yellow;
+                   
+                    //After a match is found the index is increased so the search won't stop at the same
+                    index = richTextBox1.Text.IndexOf(name, index) + 1;
+                }
+
+            }
+
+
+
+
+            //search multiple value through one textbox
+            //var folderNames = textBox1.Text.Split(',');
+            //string[] dirs = null;
+            //foreach (var folder in folderNames)
+            //{
+            //    dirs = Directory.GetDirectories(@"D:\", folder + "*", SearchOption.AllDirectories);
+            //}
+
+            //foreach (string dir in dirs)
+            //{
+            //    Path.Text += dir.ToString() + ", ";
+            //}
+            //string[] names = textBox1.Text.Split(',');
+            //foreach (string dir in names)
+            //{
+            //    textBox1.Text += dir.ToString() + Environment.NewLine;
+            //}
+
         }
+
+
+
         //To read selected listbox1 file into richtextbox
         //richtextbox1.Text = File.ReadAllText(listbox1.SelectedItem.ToString());
         private void button2_Click(object sender, EventArgs e)
@@ -149,6 +185,29 @@ namespace File_Handling
 
            richTextBox1.Text=fileContent;
             textBox2.Text=filePath; ;
+        }
+
+        private void Clear_Click(object sender, EventArgs e)
+        {
+                richTextBox1.SelectionStart = 0;
+                richTextBox1.SelectAll();
+                richTextBox1.SelectionBackColor = Color.White;
+            
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            richTextBox1.Find(textBox1.Text, RichTextBoxFinds.MatchCase);
+            richTextBox1.SelectionFont = new Font(richTextBox1.Font, FontStyle.Italic);
+            Regex regex = new Regex(textBox1.Text);
+            MatchCollection matches = regex.Matches(richTextBox1.Text);
+            richTextBox1.SelectAll();
+            richTextBox1.SelectionBackColor = richTextBox1.BackColor;
+            foreach (Match match in matches)
+            {
+                richTextBox1.Select(match.Index, match.Length);
+                richTextBox1.SelectionBackColor = Color.Yellow;
+            }
         }
     }
 }
