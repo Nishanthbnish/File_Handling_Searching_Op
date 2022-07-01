@@ -5,3 +5,15 @@ This is a Windows Application form project that will handle the file and search 
 
 # Form2
 <img width="719" alt="form2" src="https://user-images.githubusercontent.com/43651531/176429202-f5471250-3753-4c2b-bf83-a918df20c4f2.png">
+
+# 1:
+<img width="515" alt="1" src="https://user-images.githubusercontent.com/43651531/176893598-b63b5d60-1399-4071-8415-9fe4be472806.png">
+
+ # 2:
+ <img width="344" alt="2i" src="https://user-images.githubusercontent.com/43651531/176893644-003fe202-eb5f-482a-b724-49c54f119ff7.png">
+ 
+# 3:
+<img width="713" alt="2" src="https://user-images.githubusercontent.com/43651531/176893714-9cea7550-c2b9-449d-8360-b6c87ba549b6.png">
+
+# 4:
+<img width="715" alt="3" src="https://user-images.githubusercontent.com/43651531/176893762-7c7da8f6-1d84-4094-921f-4aed01f0421a.png">
